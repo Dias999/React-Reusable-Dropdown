@@ -1,5 +1,6 @@
-import { FC } from "react";
+import { FC, useState, useRef } from "react";
 import MoreIcon from "app/assets/MoreIcon";
+import useDetectClickOutsideRef from "hooks/useDetectClickOutsideRef";
 import * as S from "./styles";
 
 type Props = {
@@ -7,13 +8,27 @@ type Props = {
 };
 
 const Dropdown: FC<Props> = ({ children }) => {
-  console.log("children", children);
+  const [isOpen, setIsOpen] = useState(false);
+  const containerRef = useRef(null);
+
+  const toggleDropdown = () => {
+    setIsOpen((prev) => !prev);
+  };
+
+  useDetectClickOutsideRef(containerRef, () => setIsOpen(false));
+
   return (
-    <S.DropdownContainer data-testid="dropdown">
-      <S.Button onClick={() => console.log("click")}>
+    <S.DropdownContainer data-testid="dropdown" ref={containerRef}>
+      <S.Button onClick={toggleDropdown}>
         <MoreIcon size={24} />
       </S.Button>
-      <S.DropdownListContainer>{children}</S.DropdownListContainer>
+      <S.DropdownListContainer
+        data-testid="dropdownList"
+        isOpen={isOpen}
+        tabIndex={-1}
+      >
+        {children}
+      </S.DropdownListContainer>
     </S.DropdownContainer>
   );
 };

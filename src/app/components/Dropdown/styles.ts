@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+type DropdownListContainerProps = {
+  isOpen: boolean;
+};
+
 export const Button = styled.button`
   display: flex;
   width: 40px;
@@ -24,13 +28,32 @@ export const Button = styled.button`
 `;
 
 export const DropdownContainer = styled.div`
-  padding: 10px;
+  position: relative;
 `;
 
-export const DropdownListContainer = styled.div`
-  padding: 10px;
+export const DropdownListContainer = styled.div<DropdownListContainerProps>`
+  position: absolute;
+  display: ${({ isOpen }) => (isOpen ? "block" : "none")};
+  min-width: 100px;
+  /* right: 0; */
+  background-color: ${({ theme }) => theme.colors.background.black500};
+
   a {
+    display: flex;
+    align-items: center;
     text-decoration: none;
+    padding: 8px 12px;
+
     color: ${({ theme }) => theme.colors.text.white100};
+    cursor: pointer;
+
+    &:focus,
+    &:hover {
+      background-color: ${({ theme }) => theme.colors.primary.blue200};
+    }
+
+    &:active {
+      background-color: ${({ theme }) => theme.colors.background.black900};
+    }
   }
 `;
