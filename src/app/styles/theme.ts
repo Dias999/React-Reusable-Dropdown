@@ -13,7 +13,7 @@ export const theme: DefaultTheme = {
       black800: "hsla(225, 14%, 26%, 1)",
       black900: "hsla(225, 14%, 28%, 1)",
     },
-    test: {
+    text: {
       white100: "hsla(225, 14%, 100%, 1)",
       white200: "hsla(225, 14%, 100%, 0.8)",
     },

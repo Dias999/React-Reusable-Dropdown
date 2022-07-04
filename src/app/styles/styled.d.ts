@@ -28,7 +28,7 @@ declare module "styled-components" {
   export interface DefaultTheme {
     colors: {
       background: Background;
-      test: Text;
+      text: Text;
       primary: Primary;
     };
   }
