@@ -1,12 +1,18 @@
+import Dropdown from "app/components/Dropdown";
 import * as S from "./styles";
 
 const Home = () => {
+  const dropdownOptions = [
+    "Rename",
+    "Delete",
+    <a href="http://www.f1.com">"Share"</a>,
+  ];
+
+  const renderOptions = () =>
+    dropdownOptions?.map((option) => <div>{option}</div>);
   return (
     <S.HomeContainer>
-      <div>bla</div>
-      <div>bla</div>
-      <div>bla</div>
-      <div>bla</div>
+      <Dropdown>{renderOptions()}</Dropdown>
     </S.HomeContainer>
   );
 };

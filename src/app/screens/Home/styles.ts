@@ -6,4 +6,5 @@ export const HomeContainer = styled.div`
   flex-direction: column;
   margin-left: auto;
   margin-right: auto;
+  padding: 0 16px;
 `;
