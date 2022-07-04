@@ -1,7 +1,9 @@
 import styled from "styled-components";
+import { Alignment } from "./Dropdown";
 
 type DropdownListContainerProps = {
   isOpen: boolean;
+  alignment: Alignment;
 };
 
 export const Button = styled.button`
@@ -35,6 +37,7 @@ export const DropdownListContainer = styled.div<DropdownListContainerProps>`
   position: absolute;
   display: ${({ isOpen }) => (isOpen ? "block" : "none")};
   min-width: 100px;
+  ${({ alignment }) => alignment}: 0;
   /* right: 0; */
   background-color: ${({ theme }) => theme.colors.background.black500};
 

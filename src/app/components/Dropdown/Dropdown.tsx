@@ -3,11 +3,14 @@ import MoreIcon from "app/assets/MoreIcon";
 import useDetectClickOutsideRef from "hooks/useDetectClickOutsideRef";
 import * as S from "./styles";
 
+export type Alignment = "left" | "right";
+
 type Props = {
+  alignment?: Alignment;
   children: any[];
 };
 
-const Dropdown: FC<Props> = ({ children }) => {
+const Dropdown: FC<Props> = ({ alignment = "left", children }) => {
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef(null);
 
@@ -25,6 +28,7 @@ const Dropdown: FC<Props> = ({ children }) => {
       <S.DropdownListContainer
         data-testid="dropdownList"
         isOpen={isOpen}
+        alignment={alignment}
         tabIndex={-1}
       >
         {children}
