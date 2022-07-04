@@ -1,4 +1,4 @@
-import { FC, useState, useRef } from "react";
+import { FC, useState, useRef, ReactElement } from "react";
 import MoreIcon from "app/assets/MoreIcon";
 import useDetectClickOutsideRef from "hooks/useDetectClickOutsideRef";
 import * as S from "./styles";
@@ -7,7 +7,7 @@ export type Alignment = "left" | "right";
 
 type Props = {
   alignment?: Alignment;
-  children: any[];
+  children: ReactElement[];
 };
 
 const Dropdown: FC<Props> = ({ alignment = "left", children }) => {
@@ -20,6 +20,9 @@ const Dropdown: FC<Props> = ({ alignment = "left", children }) => {
 
   useDetectClickOutsideRef(containerRef, () => setIsOpen(false));
 
+  const renderChildren = () =>
+    children.map((child) => <div onClick={toggleDropdown}>{child}</div>);
+
   return (
     <S.DropdownContainer data-testid="dropdown" ref={containerRef}>
       <S.Button onClick={toggleDropdown}>
@@ -31,7 +34,7 @@ const Dropdown: FC<Props> = ({ alignment = "left", children }) => {
         alignment={alignment}
         tabIndex={-1}
       >
-        {children}
+        {renderChildren()}
       </S.DropdownListContainer>
     </S.DropdownContainer>
   );
